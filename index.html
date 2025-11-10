@@ -142,6 +142,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
             position: relative;
+            font-size: 1rem;
         }
 
         .nav-links a:hover {
@@ -181,36 +182,54 @@
             }
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
         }
 
-        .nav-links a {
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            padding: 2rem;
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav-links a {
             color: var(--text-primary);
             text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--dark-border);
+            display: block;
             transition: all 0.3s ease;
-            position: relative;
         }
 
-        .nav-links a:hover {
+        .mobile-nav-links a:hover {
             color: var(--neon-purple);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--neon-purple);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+            padding-left: 1rem;
         }
 
         /* Герой секция */
@@ -220,6 +239,7 @@
             align-items: center;
             position: relative;
             background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1), transparent 50%);
+            padding: 80px 0 40px;
         }
 
         .hero-content {
@@ -229,41 +249,43 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 5vw, 4rem);
             margin-bottom: 1rem;
             background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink), var(--neon-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
+            padding: 0 1rem;
         }
 
-		.typewriter {
-			overflow: hidden;
-			border-right: 2px solid var(--neon-purple);
-			white-space: nowrap;
-			margin: 0 auto;
-			animation: 
-				typewriter 3s steps(40, end),
-				blink-caret 0.75s step-end 4;
-		}
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--neon-purple);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: 
+                typewriter 3s steps(40, end),
+                blink-caret 0.75s step-end 4;
+            max-width: 90%;
+        }
 
-		@keyframes blink-caret {
-			from, to { border-color: transparent; }
-			50% { border-color: var(--neon-purple); }
-		}
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--neon-purple); }
+        }
 
-		/* Курсор исчезает после анимации */
-		.typewriter {
-			animation-fill-mode: forwards;
-		}
+        .typewriter {
+            animation-fill-mode: forwards;
+        }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 3vw, 1.25rem);
             color: var(--text-secondary);
             margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 1rem;
         }
 
         .cta-button {
@@ -277,6 +299,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .cta-button:hover {
@@ -346,42 +369,41 @@
             padding: 100px 0;
         }
 
-/* Вариант с максимальными отступами, но полоска близко к тексту */
-.section-title {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 3rem; /* Большой отступ снизу */
-    color: var(--neon-cyan);
-    text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    position: relative;
-    padding-top: 2rem; /* Большой отступ сверху */
-}
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+            padding-top: 2rem;
+        }
 
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -8px; /* Вернули полоску близко к тексту */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-    border-radius: 2px;
-}
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            border-radius: 2px;
+        }
 
-.section-subtitle {
-    text-align: center;
-    font-size: 1.3rem;
-    color: var(--text-secondary);
-    margin-bottom: 5rem; /* Большой отступ снизу */
-    margin-top: 2rem; /* Уменьшили отступ сверху от полоски */
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-}
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 5rem;
+            margin-top: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
 
         /* Обо мне */
         .about-content {
@@ -395,15 +417,15 @@
             position: relative;
         }
 
-		.about-image img {
-			width: 100%;
-			border-radius: 20px;
-			transition: all 0.3s ease;
-		}
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
 
-		.about-image:hover img {
-			transform: scale(1.05);
-		}
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
 
         .about-image::before {
             content: '';
@@ -422,6 +444,10 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--neon-cyan);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
         }
 
         .social-links {
@@ -446,98 +472,77 @@
             transform: translateY(-2px);
         }
 
-/* Стили для секции цен */
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
+        /* Стили для секции цен */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
 
-.pricing-category {
-    background: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-radius: 20px;
-    padding: 2.5rem;
-    transition: all 0.3s ease;
-}
+        .pricing-category {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
 
-.pricing-category:hover {
-    transform: translateY(-5px);
-    border-color: var(--neon-purple);
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
-}
+        .pricing-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-purple);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+        }
 
-.price-items {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
+        .price-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
 
-.price-item {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--dark-border);
-    border-radius: 15px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
+        .price-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--dark-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
 
-.price-item:hover {
-    border-color: var(--neon-cyan);
-    transform: translateX(5px);
-}
+        .price-item:hover {
+            border-color: var(--neon-cyan);
+            transform: translateX(5px);
+        }
 
-.price-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.8rem;
-    gap: 1rem;
-}
+        .price-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            gap: 1rem;
+        }
 
-.price-header h4 {
-    color: var(--text-primary);
-    font-size: 1.1rem;
-    margin: 0;
-    flex: 1;
-}
+        .price-header h4 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin: 0;
+            flex: 1;
+        }
 
-.price-amount {
-    background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 1rem;
-    white-space: nowrap;
-}
+        .price-amount {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
 
-.price-item p {
-    color: var(--text-secondary);
-    margin: 0;
-    line-height: 1.5;
-}
-
-/* Адаптивность для цен */
-@media (max-width: 768px) {
-    .pricing-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .price-header {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .price-amount {
-        align-self: flex-start;
-    }
-    
-    .pricing-category {
-        padding: 2rem;
-    }
-}
+        .price-item p {
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.5;
+        }
 
         /* Услуги */
         .services-grid {
@@ -583,147 +588,147 @@
             color: var(--neon-cyan);
         }
 
-        /* Портфолио */
-		.portfolio-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-			gap: 2.5rem;
-		}
+        /* Портфолио - ВОЗВРАЩАЕМ БОЛЬШИЕ РАЗМЕРЫ ДЛЯ ПК */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+        }
 
-		.portfolio-item {
-			position: relative;
-			border-radius: 15px;
-			overflow: hidden;
-			background: var(--dark-card);
-			border: 1px solid var(--dark-border);
-			transition: all 0.3s ease;
-			cursor: pointer;
-		}
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
 
-		.portfolio-image {
-			width: 100%;
-			height: 350px; /* Увеличили высоту */
-			object-fit: cover;
-			object-position: top;
-			transition: transform 0.3s ease;
-			cursor: zoom-in;
-		}
+        .portfolio-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
 
-		.portfolio-item:hover .portfolio-image {
-			transform: scale(1.05);
-		}
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+        }
 
-		.portfolio-overlay {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			background: linear-gradient(transparent, rgba(10, 10, 10, 0.98));
-			padding: 2rem;
-			transform: translateY(100%);
-			transition: transform 0.3s ease;
-			backdrop-filter: blur(5px);
-		}
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 10, 10, 0.98));
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
 
-		.portfolio-item:hover .portfolio-overlay {
-			transform: translateY(0);
-		}
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
 
-		.view-btn {
-			background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
-			color: white;
-			border: none;
-			padding: 0.7rem 1.5rem;
-			border-radius: 25px;
-			cursor: pointer;
-			font-weight: bold;
-			transition: all 0.3s ease;
-			margin-top: 1rem;
-		}
+        .view-btn {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
 
-		.view-btn:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
-		}
+        .view-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
 
-/* Стили для модального окна */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
-    cursor: pointer;
-    overflow-y: auto; /* Добавляем прокрутку если контент не помещается */
-}
+        /* Стили для модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            overflow-y: auto;
+        }
 
-.modal-content {
-    position: relative;
-    margin: 0 auto;
-    padding: 60px 20px 20px; /* Отступ сверху для крестика */
-    width: auto;
-    max-width: 95%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: default;
-}
+        .modal-content {
+            position: relative;
+            margin: 0 auto;
+            padding: 60px 20px 20px;
+            width: auto;
+            max-width: 95%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: default;
+        }
 
-#modalImage {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 80vh;
-    object-fit: contain;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
+        #modalImage {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
-#modalImage:hover {
-    transform: scale(1.02);
-}
+        #modalImage:hover {
+            transform: scale(1.02);
+        }
 
-.close {
-    position: fixed;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 3rem;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 1001;
-    transition: all 0.3s ease;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .close {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.close:hover {
-    color: var(--neon-purple);
-    transform: scale(1.2);
-    background: rgba(139, 92, 246, 0.3);
-}
+        .close:hover {
+            color: var(--neon-purple);
+            transform: scale(1.2);
+            background: rgba(139, 92, 246, 0.3);
+        }
 
-#modalCaption {
-    color: white;
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-}
+        #modalCaption {
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
 
         /* Контакты */
         .contact-links {
@@ -761,23 +766,201 @@
         }
 
         /* Адаптивность */
+        @media (max-width: 1024px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 2rem;
+            }
+            
+            .about-content {
+                gap: 3rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
 
+            .mobile-menu-btn {
+                display: block;
+            }
+
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+                text-align: center;
+            }
+
+            .about-image::before {
+                display: none;
+            }
+
+            .hero {
+                padding: 70px 0 30px;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            /* АДАПТАЦИЯ ПОРТФОЛИО ДЛЯ МОБИЛЬНЫХ */
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .portfolio-item {
+                margin: 0 auto;
+                max-width: 100%;
+            }
+
+            .portfolio-image {
+                height: 250px; /* Немного меньше для мобильных */
+            }
+
+            .portfolio-overlay {
+                padding: 1.5rem;
+                transform: translateY(0); /* Всегда показываем на мобильных */
+                position: relative;
+                background: var(--dark-card);
+            }
+
+            .portfolio-item:hover .portfolio-overlay {
+                transform: translateY(0); /* Отключаем анимацию на мобильных */
+            }
+
+            .portfolio-overlay h3 {
+                font-size: 1.2rem;
+            }
+
+            .portfolio-overlay p {
+                font-size: 0.9rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .pricing-category {
+                padding: 2rem;
             }
 
             .contact-links {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
+            }
+
+            .contact-link {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .social-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .floating-element {
+                display: none;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .portfolio-image {
+                height: 200px;
+            }
+
+            .portfolio-overlay {
+                padding: 1rem;
+            }
+
+            .service-card, .price-item, .pricing-category {
+                padding: 1.5rem;
+            }
+
+            .logo img {
+                height: 40px;
+                width: 36px;
+            }
+
+            .logo::before {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Улучшенная читаемость на маленьких экранах */
+        @media (max-width: 768px) {
+            .typewriter {
+                white-space: normal;
+                border-right: none;
+                animation: none;
+                text-align: center;
+            }
+            
+            .price-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .price-amount {
+                align-self: flex-start;
             }
         }
     </style>
@@ -787,9 +970,9 @@
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <img src="logo.jpeg" alt="Валерий Рябов" style="height: 50px; border-radius: 8px;">
+                <img src="logo.jpeg" alt="Валерий Рябов">
             </div>
-            <nav>
+            <nav class="desktop-nav">
                 <ul class="nav-links">
                     <li><a href="#about">Обо мне</a></li>
                     <li><a href="#services">Услуги</a></li>
@@ -798,7 +981,17 @@
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
             </nav>
+            <button class="mobile-menu-btn">☰</button>
         </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <ul class="mobile-nav-links">
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#pricing">Цены</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Герой секция -->
@@ -832,14 +1025,14 @@
                     <p>Работаю с различными технологиями и платформами, создаю сайты которые не только красиво выглядят, но и приносят реальные результаты бизнесу.</p>
                     <div class="social-links">
                         <a href="tel:+79623744736" class="social-link">📞 +7 (962) 374-47-36</a>
-                        <a href="mailto:1@mail.ru" class="social-link">✉️ valeramrak228@gmail</a>
+                        <a href="mailto:valeramrak228@gmail.com" class="social-link">✉️ valeramrak228@gmail</a>
                         <a href="https://t.me/your_telegram" class="social-link">📱 Telegram</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-	
+    
     <!-- Услуги -->
     <section id="services">
         <div class="container">
@@ -868,8 +1061,8 @@
             </div>
         </div>
     </section>
-	
-	    <!-- Цены -->
+    
+    <!-- Цены -->
     <section id="pricing" style="background: linear-gradient(135deg, var(--dark-bg) 0%, #111122 100%);">
         <div class="container">
             <h2 class="section-title">Стоимость услуг</h2>
@@ -1021,10 +1214,10 @@
 
     <!-- Модальное окно для просмотра в полный размер -->
     <div id="imageModal" class="modal">
-        <div class="modal-content" style="max-width: 90%; max-height: 90%; background: transparent; border: none; box-shadow: none;">
-            <span class="close" onclick="closeModal()" style="color: white; font-size: 3rem; position: fixed; top: 20px; right: 30px; z-index: 1001;">&times;</span>
-            <img id="modalImage" src="" alt="" style="width: 100%; height: auto; max-height: 90vh; object-fit: contain; border-radius: 10px;">
-            <div id="modalCaption" style="color: white; text-align: center; margin-top: 1rem; font-size: 1.2rem;"></div>
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <div id="modalCaption"></div>
         </div>
     </div>
 
@@ -1061,29 +1254,20 @@
             <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid var(--neon-purple); border-radius: 20px; padding: 3rem; text-align: center;">
                 <h3 style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--text-primary);">Свяжитесь со мной удобным способом</h3>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 800px; margin: 0 auto;">
-                    <a href="mailto:valeramrak228@gmail.com" class="contact-link" style="display: flex; align-items: center; justify-content: center; gap: 1rem; padding: 1.5rem; background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 15px; color: var(--text-primary); text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;">
+                <div class="contact-links">
+                    <a href="mailto:valeramrak228@gmail.com" class="contact-link">
                         <span style="font-size: 1.5rem;">📧</span>
-                        <div style="text-align: left;">
-                            <div style="font-weight: bold;">Email</div>
-                            <div style="font-size: 0.9rem; color: var(--text-secondary);">valeramrak228@gmail.com</div>
-                        </div>
+                        Email
                     </a>
                     
-                    <a href="https://t.me/your_telegram" class="contact-link" style="display: flex; align-items: center; justify-content: center; gap: 1rem; padding: 1.5rem; background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 15px; color: var(--text-primary); text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;">
+                    <a href="https://t.me/your_telegram" class="contact-link">
                         <span style="font-size: 1.5rem;">📱</span>
-                        <div style="text-align: left;">
-                            <div style="font-weight: bold;">Telegram</div>
-                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Написать в Telegram</div>
-                        </div>
+                        Telegram
                     </a>
                     
-                    <a href="https://wa.me/79623744736" class="contact-link" style="display: flex; align-items: center; justify-content: center; gap: 1rem; padding: 1.5rem; background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 15px; color: var(--text-primary); text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;">
+                    <a href="https://wa.me/79623744736" class="contact-link">
                         <span style="font-size: 1.5rem;">💬</span>
-                        <div style="text-align: left;">
-                            <div style="font-weight: bold;">WhatsApp</div>
-                            <div style="font-size: 0.9rem; color: var(--text-secondary);">+7 (962) 374-47-36</div>
-                        </div>
+                        WhatsApp
                     </a>
                 </div>
                 
@@ -1095,7 +1279,7 @@
             </div>
         </div>
     </section>
-	
+    
 
     <!-- Футер -->
     <footer>
@@ -1105,6 +1289,21 @@
     </footer>
 
     <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+
+        // Закрытие мобильного меню при клике на ссылку
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+            });
+        });
+
         // Плавная прокрутка для навигации
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1135,72 +1334,73 @@
         }, observerOptions);
 
         // Наблюдаем за элементами для анимации
-        document.querySelectorAll('.service-card, .portfolio-item, .about-content').forEach(el => {
+        document.querySelectorAll('.service-card, .portfolio-item, .about-content, .pricing-category').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
 
-        // Эффект параллакса для плавающих элементов
-        document.addEventListener('mousemove', (e) => {
-            const floatingElements = document.querySelectorAll('.floating-element');
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            floatingElements.forEach((element, index) => {
-                const speed = (index + 1) * 0.5;
-                const x = (mouseX - 0.5) * speed * 50;
-                const y = (mouseY - 0.5) * speed * 50;
+        // Эффект параллакса для плавающих элементов (только на десктопе)
+        if (window.innerWidth > 768) {
+            document.addEventListener('mousemove', (e) => {
+                const floatingElements = document.querySelectorAll('.floating-element');
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
                 
-                element.style.transform = `translate(${x}px, ${y}px)`;
+                floatingElements.forEach((element, index) => {
+                    const speed = (index + 1) * 0.5;
+                    const x = (mouseX - 0.5) * speed * 50;
+                    const y = (mouseY - 0.5) * speed * 50;
+                    
+                    element.style.transform = `translate(${x}px, ${y}px)`;
+                });
             });
+        }
+
+        // Функция открытия модального окна
+        function openModal(imageSrc, title) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const caption = document.getElementById('modalCaption');
+            
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+            caption.innerHTML = title;
+            
+            // Блокируем прокрутку страницы
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Функция закрытия модального окна
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            
+            // Возвращаем прокрутку страницы
+            document.body.style.overflow = 'auto';
+        }
+
+        // Закрытие по клику на модальное окно (вне изображения)
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Закрытие по Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Закрытие по клику на само изображение в модальном окне
+        document.getElementById('modalImage').addEventListener('click', function(event) {
+            event.stopPropagation();
+            closeModal();
         });
     </script>
-<script>
-    // Функция открытия модального окна
-    function openModal(imageSrc, title) {
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        const caption = document.getElementById('modalCaption');
-        
-        modal.style.display = 'block';
-        modalImg.src = imageSrc;
-        caption.innerHTML = title;
-        
-        // Блокируем прокрутку страницы
-        document.body.style.overflow = 'hidden';
-    }
-
-    // Функция закрытия модального окна
-    function closeModal() {
-        const modal = document.getElementById('imageModal');
-        modal.style.display = 'none';
-        
-        // Возвращаем прокрутку страницы
-        document.body.style.overflow = 'auto';
-    }
-
-    // Закрытие по клику на модальное окно (вне изображения)
-    window.onclick = function(event) {
-        const modal = document.getElementById('imageModal');
-        if (event.target === modal) {
-            closeModal();
-        }
-    }
-
-    // Закрытие по Escape
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            closeModal();
-        }
-    });
-
-    // Закрытие по клику на само изображение в модальном окне
-    document.getElementById('modalImage').addEventListener('click', function(event) {
-        event.stopPropagation(); // Предотвращаем закрытие при клике именно на картинку
-        closeModal();
-    });
-</script>
 </body>
 </html>
